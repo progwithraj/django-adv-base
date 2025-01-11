@@ -37,7 +37,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 DEBUG = os.environ.get("DJANGO_DEBUG")
 DJANGO_ENV=os.environ.get("DJANGO_ENV")
 
-ALLOWED_HOSTS = ["https://*.railway.app"] # https://saas.prod.railway.app
+ALLOWED_HOSTS = ["*.railway.app"] # https://saas.prod.railway.app
 if DJANGO_ENV == "DEV":
     ALLOWED_HOSTS += convert_string_to_list(os.environ.get("DJANGO_ALLOWED_HOSTS"))
 
@@ -293,12 +293,13 @@ REST_FRAMEWORK = {
     ],
 }
 
+CORS_HOSTS_LIST = convert_string_to_list(os.environ.get("CORS_HOSTS_LIST"))
 # for django-cors-headers
 CORS_ALLOWED_ORIGINS = [
-   *ALLOWED_HOSTS
+   *CORS_HOSTS_LIST
 ]
 CSRF_TRUSTED_ORIGINS = [
-    *ALLOWED_HOSTS
+    *CORS_HOSTS_LIST
 ]
 CORS_ALLOW_METHODS = (
     "DELETE",
