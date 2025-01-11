@@ -37,7 +37,9 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 DEBUG = os.environ.get("DJANGO_DEBUG")
 DJANGO_ENV=os.environ.get("DJANGO_ENV")
 
-ALLOWED_HOSTS = convert_string_to_list(os.environ.get("DJANGO_ALLOWED_HOSTS"))
+ALLOWED_HOSTS = ["https://*.railway.app"] # https://saas.prod.railway.app
+if DJANGO_ENV == "DEV":
+    ALLOWED_HOSTS += convert_string_to_list(os.environ.get("DJANGO_ALLOWED_HOSTS"))
 
 # Application definition
 
@@ -54,7 +56,13 @@ THIRD_PARTY_APPS = [
     'django_extensions',
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders'
+    'corsheaders',
+    "allauth_ui",
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+    "widget_tweaks",
 ]
 
 LOCAL_APPS = [
@@ -71,6 +79,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -90,7 +99,7 @@ ROOT_URLCONF = 'coreApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,14 +117,49 @@ WSGI_APPLICATION = 'coreApp.wsgi.application'
 # ALLOW AUTO APPEND SLASH
 APPEND_SLASH = True
 
+# Django Allauth Config 
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_EMAIL_VERIFICATION="mandatory"
+ACCOUNT_EMAIL_SUBJECT_PREFIX="[CFE] "
+ACCOUNT_EMAIL_REQUIRED=True
+
+AUTHENTICATION_BACKENDS = [
+    # ...
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+    # ...
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    "github": {
+        "VERIFIED_EMAIL": True
+    }
+}
+
 # supabase
 SUPABASE_PROJECT_PASSWORD = os.environ.get("SUPABASE_PROJECT_PASSWORD")
 SUPABASE_DB_URL = os.environ.get("SUPABASE_PROJECT_URI").format(
     SUPABASE_PROJECT_PASSWORD=SUPABASE_PROJECT_PASSWORD
 )
 
+# neonsql
+NEON_SQL_PROJECT_USER = os.environ.get("NEON_SQL_PROJECT_USER")
+NEON_SQL_PROJECT_DB = os.environ.get("NEON_SQL_PROJECT_DB")
+NEON_DB_PROJECT_USER_PASSWORD = os.environ.get("NEON_DB_PROJECT_USER_PASSWORD")
+NEON_DB_URL = os.environ.get("NEON_SQL_PROJECT_URI").format(
+    NEON_SQL_PROJECT_USER=NEON_SQL_PROJECT_USER,
+    NEON_DB_PROJECT_USER_PASSWORD=NEON_DB_PROJECT_USER_PASSWORD,
+    NEON_SQL_PROJECT_DB=NEON_SQL_PROJECT_DB
+)
+
 # Database
 SUPABASE_DB_CONFIG = dj_database_url.config(default=SUPABASE_DB_URL, conn_max_age=600,  conn_health_checks=True)
+
+NEON_DB_CONFIG = dj_database_url.config(default=NEON_DB_URL, conn_max_age=600,  conn_health_checks=True)
 
 POSTGRES_DB_CONFIG = {
     'ENGINE': os.environ.get("DJANGO_DB_ENGINE"),
@@ -136,8 +180,13 @@ DATABASES= {
     "postgres": POSTGRES_DB_CONFIG
 }
 
-if SUPABASE_DB_URL:
-    DATABASES['default'] = SUPABASE_DB_CONFIG
+if SUPABASE_DB_CONFIG and NEON_DB_CONFIG:
+    if DJANGO_ENV == "DEV":
+        DATABASES['default'] = SUPABASE_DB_CONFIG
+    else:
+        DATABASES['default'] = NEON_DB_CONFIG
+
+print(DATABASES['default'])
 
 
 # Password validation
@@ -174,12 +223,44 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+# whitenoise config
+STATIC_URL = "static/"
+STATICFILES_BASE_DIR = BASE_DIR / "staticfiles"
+STATICFILES_BASE_DIR.mkdir(exist_ok=True, parents=True)
+STATICFILES_VENDOR_DIR = STATICFILES_BASE_DIR / "vendors"
+
+# source(s) for python manage.py collectstatic 
+STATICFILES_DIRS = [
+    STATICFILES_BASE_DIR
+]
+
+# output for python manage.py collectstatic 
+# local cdn
+STATIC_ROOT = BASE_DIR / "local-cdn"
+
+# < Django 4.2
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# email
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = os.environ.get("EMAIL_PORT", default="587") # 587
+EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", default=True) # Use EMAIL_PORT 587 for TLS
+EMAIL_USE_SSL = os.environ.get("EMAIL_USE_SSL", default=False)
+ADMIN_USER_NAME=os.environ.get("ADMIN_USER_NAME", default="Admin user")
+ADMIN_USER_EMAIL=os.environ.get("ADMIN_USER_EMAIL", default=None)
 
 # for django-debug-toolbar
 INTERNAL_IPS = [
@@ -211,6 +292,7 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.BrowsableAPIRenderer",
     ],
 }
+
 # for django-cors-headers
 CORS_ALLOWED_ORIGINS = [
    *ALLOWED_HOSTS
