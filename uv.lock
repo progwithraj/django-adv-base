@@ -38,6 +38,45 @@ wheels = [
 ]
 
 [[package]]
+name = "django-adv"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "dj-database-url" },
+    { name = "django" },
+    { name = "django-cors-headers" },
+    { name = "django-debug-toolbar" },
+    { name = "django-dotenv" },
+    { name = "django-extensions" },
+    { name = "django-filter" },
+    { name = "djangorestframework" },
+    { name = "djangorestframework-simplejwt" },
+    { name = "gunicorn" },
+    { name = "psycopg2-binary" },
+    { name = "python-dotenv" },
+    { name = "ruff" },
+    { name = "whitenoise" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "dj-database-url", specifier = ">=2.3.0" },
+    { name = "django", specifier = ">=5.1.4" },
+    { name = "django-cors-headers", specifier = ">=4.6.0" },
+    { name = "django-debug-toolbar", specifier = ">=4.4.6" },
+    { name = "django-dotenv", specifier = ">=1.4.2" },
+    { name = "django-extensions", specifier = ">=3.2.3" },
+    { name = "django-filter", specifier = ">=24.3" },
+    { name = "djangorestframework", specifier = ">=3.15.2" },
+    { name = "djangorestframework-simplejwt", specifier = ">=5.4.0" },
+    { name = "gunicorn", specifier = ">=23.0.0" },
+    { name = "psycopg2-binary", specifier = ">=2.9.10" },
+    { name = "python-dotenv", specifier = ">=1.0.1" },
+    { name = "ruff", specifier = ">=0.9.1" },
+    { name = "whitenoise", specifier = ">=6.8.2" },
+]
+
+[[package]]
 name = "django-cors-headers"
 version = "4.6.0"
 source = { registry = "https://pypi.org/simple" }
@@ -82,45 +121,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/8a/f1/318684c9466968bf9a9c221663128206e460c1a67f595055be4b284cde8a/django-extensions-3.2.3.tar.gz", hash = "sha256:44d27919d04e23b3f40231c4ab7af4e61ce832ef46d610cc650d53e68328410a", size = 277216 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a7/7e/ba12b9660642663f5273141018d2bec0a1cae1711f4f6d1093920e157946/django_extensions-3.2.3-py3-none-any.whl", hash = "sha256:9600b7562f79a92cbf1fde6403c04fee314608fefbb595502e34383ae8203401", size = 229868 },
-]
-
-[[package]]
-name = "django-f-exp"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "dj-database-url" },
-    { name = "django" },
-    { name = "django-cors-headers" },
-    { name = "django-debug-toolbar" },
-    { name = "django-dotenv" },
-    { name = "django-extensions" },
-    { name = "django-filter" },
-    { name = "djangorestframework" },
-    { name = "djangorestframework-simplejwt" },
-    { name = "gunicorn" },
-    { name = "psycopg2-binary" },
-    { name = "python-dotenv" },
-    { name = "ruff" },
-    { name = "whitenoise" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "dj-database-url", specifier = ">=2.3.0" },
-    { name = "django", specifier = ">=5.1.4" },
-    { name = "django-cors-headers", specifier = ">=4.6.0" },
-    { name = "django-debug-toolbar", specifier = ">=4.4.6" },
-    { name = "django-dotenv", specifier = ">=1.4.2" },
-    { name = "django-extensions", specifier = ">=3.2.3" },
-    { name = "django-filter", specifier = ">=24.3" },
-    { name = "djangorestframework", specifier = ">=3.15.2" },
-    { name = "djangorestframework-simplejwt", specifier = ">=5.4.0" },
-    { name = "gunicorn", specifier = ">=23.0.0" },
-    { name = "psycopg2-binary", specifier = ">=2.9.10" },
-    { name = "python-dotenv", specifier = ">=1.0.1" },
-    { name = "ruff", specifier = ">=0.9.1" },
-    { name = "whitenoise", specifier = ">=6.8.2" },
 ]
 
 [[package]]

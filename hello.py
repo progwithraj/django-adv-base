@@ -21,6 +21,5 @@ def main():
    merged_pref.update(abob=34)
    print('updated', merged_pref)
 
-
 if __name__ == "__main__":
     main()
