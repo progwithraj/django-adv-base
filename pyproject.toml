@@ -12,4 +12,11 @@ dependencies = [
     "django-cors-headers>=4.6.0",
     "django-dotenv>=1.4.2",
     "python-dotenv>=1.0.1",
+    "django-filter>=24.3",
+    "dj-database-url>=2.3.0",
+    "djangorestframework-simplejwt>=5.4.0",
+    "gunicorn>=23.0.0",
+    "ruff>=0.9.1",
+    "whitenoise>=6.8.2",
+    "psycopg2-binary>=2.9.10",
 ]
