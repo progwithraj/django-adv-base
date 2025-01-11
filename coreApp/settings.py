@@ -37,7 +37,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 DEBUG = os.environ.get("DJANGO_DEBUG")
 DJANGO_ENV=os.environ.get("DJANGO_ENV")
 
-ALLOWED_HOSTS = ["*.railway.app"] # https://saas.prod.railway.app
+ALLOWED_HOSTS = [".railway.app", "127.0.0.1"] # https://saas.prod.railway.app
 if DJANGO_ENV == "DEV":
     ALLOWED_HOSTS += convert_string_to_list(os.environ.get("DJANGO_ALLOWED_HOSTS"))
 
@@ -66,8 +66,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    # 'f_exp.apps.FExpConfig',
-    # 'q_exp.apps.QExpConfig',
+    "subCore.apps.SubcoreConfig",
 ]
 
 
