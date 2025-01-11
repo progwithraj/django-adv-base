@@ -1,0 +1,25 @@
+# python django relate gitignore
+
+# Django
+__pycache__/
+*.pyc
+*.pyo
+*.py.class
+db.sqlite3
+db.sqlite3-journal
+
+# PyCharm
+.idea
+
+# Virtualenv
+*.egg-info
+htmlcov
+.coverage
+.venv
+
+# vscode
+.vscode
+
+# node_modules
+node_modules
+
