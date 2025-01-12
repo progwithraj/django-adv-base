@@ -5,47 +5,47 @@ activate:
 
 .PHONY: startapp
 startapp:
-	uv run ./manage.py startapp
+	uv run ./backend/manage.py startapp
 
 .PHONY: startproject
 startproject:
-	uv run ./manage.py startproject
+	uv run ./backend/manage.py startproject
 
 .PHONY: makemigrations
 makemigrations:
-	uv run ./manage.py makemigrations
+	uv run ./backend/manage.py makemigrations
 
 .PHONY: migrate
 migrate:
-	uv run ./manage.py migrate
+	uv run ./backend/manage.py migrate
 
 .PHONY: createsuperuser
 createsuperuser:
-	uv run ./manage.py createsuperuser
+	uv run ./backend/manage.py createsuperuser
 
 .PHONY: runserver
 runserver:
-	uv run ./manage.py runserver
+	uv run ./backend/manage.py runserver
 
 .PHONY: test
 test:
-	uv run ./manage.py test
+	uv run ./backend/manage.py test
 
 .PHONY: collectstatic
 collectstatic:
-	uv run ./manage.py collectstatic
+	uv run ./backend/manage.py collectstatic
 
 .PHONY: shell
 shell:
-	uv run ./manage.py shell
+	uv run ./backend/manage.py shell
 
 .PHONY: shell-plus
 shell-plus:
-	uv run ./manage.py shell_plus
+	uv run ./backend/manage.py shell_plus
 
 .PHONY: runscript
 runscript:
-	uv run ./manage.py runscript
+	uv run ./backend/manage.py runscript
 
 .PHONY: celery
 celery:
