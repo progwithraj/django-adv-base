@@ -37,12 +37,11 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 DEBUG = os.environ.get("DJANGO_DEBUG")
 DJANGO_ENV=os.environ.get("DJANGO_ENV")
 
-ALLOWED_HOSTS = [".railway.app", "127.0.0.1"] # https://saas.prod.railway.app
+ALLOWED_HOSTS = [".railway.app", "127.0.0.1", "localhost", "0.0.0.0"] # https://saas.prod.railway.app
 if DJANGO_ENV == "DEV":
-    ALLOWED_HOSTS += convert_string_to_list(os.environ.get("DJANGO_ALLOWED_HOSTS"))
+    ALLOWED_HOSTS += convert_string_to_list(os.environ.get("DJANGO_ALLOWED_HOSTS_LIST"))
 
 # Application definition
-
 BASE_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,10 +51,15 @@ BASE_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# custom admin app
+BASE_APPS.insert(0, 'jazzmin')
+
 THIRD_PARTY_APPS = [
     'django_extensions',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
+    # 'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     "allauth_ui",
     'allauth',
@@ -63,9 +67,16 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
     "widget_tweaks",
+    'django_filters',
+    'anymail',
+    'drf_yasg',
+    'django_countries',
 ]
 
 LOCAL_APPS = [
+    'api.apps.ApiConfig',
+    'customUser.apps.CustomuserConfig',
+    'userProfile.apps.UserprofileConfig',
 ]
 
 
@@ -93,6 +104,9 @@ INSTALLED_APPS = [
 ]
 
 ROOT_URLCONF = 'coreApp.urls'
+
+# custom user model
+AUTH_USER_MODEL = "customUser.CustomUser"
 
 TEMPLATES = [
     {
@@ -236,6 +250,10 @@ STATICFILES_DIRS = [
 # local cdn
 STATIC_ROOT = BASE_DIR / "local-cdn"
 
+# media files
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 # < Django 4.2
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
@@ -243,6 +261,9 @@ STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
+    "default" :{
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    }
 }
 
 # Default primary key field type
@@ -319,8 +340,99 @@ SIMPLE_JWT = {
     "SIGNING_KEY": JWT_SECRET_KEY,
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-    "AUTH_HEADER_TYPES": ("Bearer",),
     "ROTATE_REFRESH_TOKENS": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),
     "BLACKLIST_AFTER_ROTATION": True,
+    "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
+    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
+    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=7),
 }
 INTERNAL_IPS = ALLOWED_HOSTS
+
+
+# Custom Admin Settings
+JAZZMIN_SETTINGS = {
+    "site_title": "Priyanath",
+    "site_header": "Priyanath",
+    "site_brand": "Modern Marketplace ",
+    # "site_icon": "images/favicon.ico",
+    # "site_logo": "images/logos/logo.jpg",
+    "welcome_sign": "Welcome To Priyanath",
+    "copyright": "Priyanath",
+    "user_avatar": "images/photos/logo.jpg",
+    # "topmenu_links": [
+    #     {"name": "Dashboard", "url": "home", "permissions": ["auth.view_user"]},
+    #     {"model": "auth.User"},
+    # ],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "order_with_respect_to": [
+        "api",
+        "api.Post",
+        "api.Category",
+        "api.Comment",
+        "api.Bookmark",
+        "api.Notification",
+    ],
+    "icons": {
+        "admin.LogEntry": "fas fa-file",
+
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+
+        "api.User": "fas fa-user",
+        "api.Profile":"fas fa-address-card",
+        "api.Post":"fas fa-th",
+        "api.Category":"fas fa-tag",
+        "api.Comment":"fas fa-envelope",
+        "api.Notification":"fas fa-bell",
+        "api.Bookmark":"fas fa-heart",
+
+        
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-arrow-circle-right",
+    "related_modal_active": False,
+    
+    "custom_js": None,
+    "show_ui_builder": True,
+    
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {
+        "auth.user": "collapsible",
+        "auth.group": "vertical_tabs",
+    },
+}
+
+# Jazzmin Tweaks
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": True,
+    "brand_small_text": False,
+    "brand_colour": "navbar-indigo",
+    "accent": "accent-olive",
+    "navbar": "navbar-indigo navbar-dark",
+    "no_navbar_border": False,
+    "navbar_fixed": False,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": False,
+    "sidebar": "sidebar-dark-indigo",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "default",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-outline-primary",
+        "secondary": "btn-outline-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    }
+}

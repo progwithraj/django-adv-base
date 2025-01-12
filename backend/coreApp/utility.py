@@ -15,3 +15,18 @@ def convert_string_to_list(s: str, delimiter: str =',') -> list[str]:
     specified delimiter.
     """
     return s.split(delimiter)
+
+def check_none_or_empty(value: str) -> bool:
+    """
+    The function `check_none_or_empty` checks if a given string is either None or empty.
+    
+    :param value: The `check_none_or_empty` function takes a parameter `value` of type string and checks
+    if it is either `None` or an empty string. If `value` is `None` or an empty string, the function
+    returns `True`, otherwise it returns `False`
+    :type value: str
+    :return: The function `check_none_or_empty` returns a boolean value - `True` if the input `value` is
+    either `None` or an empty string, and `False` otherwise.
+    """
+    if value is None or value == "":
+        return True
+    return False

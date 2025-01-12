@@ -48,4 +48,5 @@ dependencies = [
     "channels-redis>=4.2.1",
     "constantly>=23.10.4",
     "colorama>=0.4.6",
+    "django-ckeditor-5>=0.2.15",
 ]
