@@ -28,7 +28,7 @@ def run():
     print(Fore.GREEN + f"users: {categories[0].post_counts}")
     # user with most posts
     user_with_most_posts = (
-        CustomUser.objects.annotate(all_post_count=models.Count("posts"))
+        CustomUser.objects.annotate(all_post_counts=models.Count("posts"))
         .order_by("-all_post_counts")
         .first()
     )
