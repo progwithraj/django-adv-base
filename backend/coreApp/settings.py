@@ -99,6 +99,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+CUSTOM_MIDDLEWARE = [
+    "coreApp.middlewares.log_request",
+    "coreApp.middlewares.log_queries",
+]
+
+MIDDLEWARE.extend(CUSTOM_MIDDLEWARE)
+
 if DJANGO_ENV == "DEV":
     # if in dev, add whitenoise to disable collectstatic
     BASE_APPS.insert(0, "whitenoise.runserver_nostatic")
@@ -130,6 +137,44 @@ TEMPLATES = [
         },
     },
 ]
+
+# LOGGING config
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "request_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "logs", "requests.log"),
+            "formatter": "verbose",
+        },
+        "query_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "logs", "queries.log"),
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "request_logger": {
+            "handlers": ["request_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "query_logger": {
+            "handlers": ["query_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}
 
 WSGI_APPLICATION = "coreApp.wsgi.application"
 
