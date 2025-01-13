@@ -1,8 +1,8 @@
-def convert_string_to_list(s: str, delimiter: str =',') -> list[str]:
+def convert_string_to_list(s: str, delimiter: str = ",") -> list[str]:
     """
     The function `convert_string_to_list` takes a string and splits it into a list of substrings based
     on a specified delimiter.
-    
+
     :param s: The parameter `s` is a string that you want to convert into a list by splitting it based
     on a specified delimiter
     :type s: str
@@ -16,10 +16,11 @@ def convert_string_to_list(s: str, delimiter: str =',') -> list[str]:
     """
     return s.split(delimiter)
 
+
 def check_none_or_empty(value: str) -> bool:
     """
     The function `check_none_or_empty` checks if a given string is either None or empty.
-    
+
     :param value: The `check_none_or_empty` function takes a parameter `value` of type string and checks
     if it is either `None` or an empty string. If `value` is `None` or an empty string, the function
     returns `True`, otherwise it returns `False`

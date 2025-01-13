@@ -1,0 +1,75 @@
+{
+  "window.commandCenter": 1,
+  "editor.inlayHints.enabled": "off",
+  "workbench.colorCustomizations": {
+    "editor.lineHighlightBackground": "#1073cf2d",
+    "editor.lineHighlightBorder": "#9fced11f"
+  },
+  "editor.wordWrap": "off",
+  "diffEditor.wordWrap": "off",
+  "editor.guides.indentation": false,
+  "editor.guides.bracketPairs": false,
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "explorer.confirmDelete": false,
+  "docwriter.custom.author": "Priyanath Mukherjee",
+  "redhat.telemetry.enabled": true,
+  "editor.linkedEditing": true,
+  "svg.preview.mode": "svg",
+  "git.confirmSync": false,
+  "workbench.iconTheme": "bearded-icons",
+  "explorer.confirmDragAndDrop": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff" // Set Ruff as the formatter for Python files
+  },
+  "ruff.organizeImports": true, // Enable automatic import sorting
+  "ruff.fixAll": true, // Enable automatic code fixes
+  "ruff.lint.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true // Fix all fixable errors on save
+  },
+  "pieces.OS.launchOnStartup": "Yes",
+  "pieces.cloudCapabilities": "Blended",
+  "pieces.telemetry": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.db": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.s3db": "${capture}.${extname}-*"
+  },
+  "sqltools.useNodeRuntime": true,
+  "windsurf.enableSupercomplete": false,
+  "windsurf.autocompleteSpeed": "default",
+  "windsurf.enableAutocomplete": true,
+  "windsurf.showInlayHintShortcuts": false,
+  // editor code space
+  "editor.fontFamily": "Dank Mono",
+  "editor.fontSize": 15,
+  "editor.fontLigatures": true,
+  "editor.fontVariations": true,
+  "editor.letterSpacing": 0.3,
+  // terminal
+  "terminal.integrated.fontFamily": "'Fira Code', 'Courier New', monospace",
+  "terminal.integrated.fontSize": 14 // Adjust the font size as needed
+}
