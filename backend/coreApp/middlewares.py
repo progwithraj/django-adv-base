@@ -8,6 +8,20 @@ query_logger = logging.getLogger("query_logger")
 
 
 def log_request(get_response):
+    """
+    The `log_request` function is a middleware in Python that logs details of incoming requests,
+    including IP address, method, path, status code, and duration.
+
+    :param get_response: The `get_response` parameter in the `log_request` function is a function that
+    represents the view or middleware that will be called to process the incoming request. It is a
+    reference to the next middleware or view in the Django middleware stack
+    :return: The `log_request` function is returning a middleware function that logs details of incoming
+    requests and their responses. This middleware function wraps around the `get_response` function,
+    which processes the incoming request and returns a response. The middleware function calculates the
+    duration of the request processing, logs various details of the request and response, and then
+    returns the response.
+    """
+
     def middleware(request):
         # Start time
         start_time = time.time()
@@ -39,6 +53,18 @@ def log_request(get_response):
 
 
 def log_queries(get_response):
+    """
+    The `log_queries` function is a middleware in Python that logs all database queries along with
+    relevant request information.
+
+    :param get_response: `get_response` is a function that represents the view function in Django
+    middleware. It is responsible for processing the incoming request and returning a response. In the
+    provided code snippet, the `middleware` function wraps around the `get_response` function to log
+    queries before returning the response
+    :return: The `log_queries` function is returning the `middleware` function, which is a Django
+    middleware function that logs all database queries made during a request.
+    """
+
     def middleware(request):
         # Process the request
         response = get_response(request)
@@ -58,6 +84,18 @@ def log_queries(get_response):
 
 
 def get_client_ip(request):
+    """
+    The function `get_client_ip` retrieves the client's IP address from the request object in a Django
+    application, handling cases where the IP address is forwarded or directly available.
+
+    :param request: The `request` parameter in the `get_client_ip` function is typically an object
+    representing an HTTP request in a web application framework like Django or Flask. It contains
+    information about the incoming request, such as headers, method, and client IP address
+    :return: The function `get_client_ip` returns the client's IP address. It first checks if there is
+    an "HTTP_X_FORWARDED_FOR" header in the request's META data. If present, it extracts the IP address
+    from the header. If not, it falls back to retrieving the IP address from the "REMOTE_ADDR" field in
+    the request's META data.
+    """
     x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
     if x_forwarded_for:
         ip = x_forwarded_for.split(",")[0]
