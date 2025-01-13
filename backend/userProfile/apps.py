@@ -7,4 +7,4 @@ class UserprofileConfig(AppConfig):
 
     # this method is called when the app is ready and the signals are connected
     def ready(self):
-        pass
+        import userProfile.signals  # noqa
