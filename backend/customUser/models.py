@@ -1,7 +1,7 @@
 from coreApp.utility import check_none_or_empty
-from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserManager(BaseUserManager):
@@ -82,8 +82,8 @@ class CustomUser(AbstractUser):
     @property
     def get_full_name(self):
         """
-        The `get_full_name` function is a property method in Python that returns the full name by
-        combining the `first_name` and `last_name` attributes.
+        The `get_full_name` function in Python returns the full name by combining the `first_name` and
+        `last_name` attributes with a space in between.
         :return: The `get_full_name` property is being returned, which concatenates the `first_name` and
         `last_name` attributes of the object with a space in between.
         """
@@ -99,6 +99,39 @@ class CustomUser(AbstractUser):
         """
         email_name, _ = self.email.split("@")
         return email_name
+
+    @property
+    def get_all_posts(self):
+        """
+        This function returns all posts associated with a given object.
+        :return: A list of all posts associated with the object calling the `get_all_posts` method.
+        """
+        return self.posts.all()
+
+    @property
+    def get_all_comments(self):
+        """
+        This function returns all comments associated with a given object.
+        :return: A list of all comments associated with the object.
+        """
+        return self.comments.all()
+
+    @property
+    def get_all_bookmarks(self):
+        """
+        This function uses a property decorator to return all bookmarks associated with the object.
+        :return: The `get_all_bookmarks` method is returning all the bookmarks associated with the
+        current instance of the class. It is using the `all()` method to retrieve all the bookmarks.
+        """
+        return self.bookmarks.all()
+
+    @property
+    def get_all_likes_count(self):
+        """
+        The function `get_all_likes_count` returns the count of likes for a user.
+        :return: The `get_all_likes_count` method is returning the count of likes for a user.
+        """
+        return self.likes.count()
 
     def __str__(self):
         """

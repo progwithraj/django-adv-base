@@ -1,10 +1,11 @@
+import shortuuid
 from coreApp.utility import check_none_or_empty
 from customUser.models import CustomUser
 from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import gettext as _
+from django_prose_editor.fields import ProseEditorField
 from userProfile.models import UserProfile
-import shortuuid
 
 
 # The `Category` class defines a model with fields for title, image, and slug, along with methods for
@@ -92,7 +93,7 @@ class Posts(models.Model):
     likes = models.ManyToManyField(
         CustomUser,
         blank=True,
-        related_name="likes_user",
+        related_name="likes",
         verbose_name=_("Users who liked the post"),
     )
     image = models.FileField(
@@ -120,6 +121,7 @@ class Posts(models.Model):
         indexes = [
             models.Index(fields=["user", "category"]),
             models.Index(fields=["user", "profile"]),
+            models.Index(fields=["user", "status"]),
         ]  # this is for indexing, it will help in better performing queries
         # db_table = 'Posts' # this is to set a custom name for the table in db
         # permissions = [
@@ -134,6 +136,15 @@ class Posts(models.Model):
         :return: The `__str__` method is returning the `title` attribute of the object.
         """
         return self.title
+
+    @property
+    def like_count(self):
+        """
+        The function `like_count` returns the count of likes associated with the object.
+        :return: The `like_count` method is returning the count of likes associated with the object
+        instance (`self`).
+        """
+        return self.likes.count()
 
     def get_slug(self):
         """
@@ -153,3 +164,102 @@ class Posts(models.Model):
             print("slug is empty", self.get_slug())
             self.slug = self.get_slug()
         super(Posts, self).save(*args, **kwargs)
+
+
+# The `Comments` class defines a model for storing comments made by users on posts, including fields
+# for user, post, comment text, timestamps, slug, and replies.
+class Comments(models.Model):
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="comments",
+        verbose_name=_("User who made the comment"),
+    )
+    post = models.ForeignKey(
+        Posts,
+        on_delete=models.CASCADE,
+        related_name="comments",
+        verbose_name=_("Post at which the comment is made"),
+    )
+    comment = ProseEditorField(verbose_name=_("Actual comment text on the post"))
+    created_at = models.DateTimeField(
+        verbose_name=_("The creation date of the comment"), auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        verbose_name=_("Updated date of the comment"), auto_now=True
+    )
+    slug = models.SlugField(
+        verbose_name=_("Slug of the comment"), unique=True, blank=True, null=True
+    )
+    in_reply_to = models.ForeignKey(
+        "self",
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        verbose_name=_("Reply to this comment"),
+        related_name="replies",
+    )
+
+    class Meta:
+        verbose_name_plural = "Comments"
+        db_table = "Comments"
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["user", "post"]),
+        ]
+
+    def get_slug(self):
+        """
+        The function `get_slug` generates a unique slug by combining a slugified username and comment with a portion of
+        a UUID.
+        :return: The `get_slug` method is returning a slugified version of the `username` , `comment` attribute of the
+        object concatenated with the first 4 characters of a randomly generated UUID.
+        """
+        return (
+            slugify(self.user.username + self.comment[:15]) + "-" + shortuuid.uuid()[:4]
+        )
+
+    def __str__(self):
+        return (
+            self.user.username + " - " + self.comment[:15]
+        )  # return username and first 15 characters of comment
+
+    def reply_count(self):
+        return self.replies.count()
+
+    def save(self, *args, **kwargs):
+        if check_none_or_empty(self.slug):
+            self.slug = self.get_slug()
+        super(Comments, self).save(*args, **kwargs)
+
+
+class Bookmarks(models.Model):
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="bookmarks",
+        verbose_name=_("User who added the bookmark"),
+    )
+    post = models.ForeignKey(
+        Posts,
+        on_delete=models.CASCADE,
+        related_name="bookmarks",
+        verbose_name=_("Post at which the bookmark is made"),
+    )
+    bookmarked_at = models.DateTimeField(
+        verbose_name=_("The creation date of the bookmark"), auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name_plural = "Bookmarks"
+        db_table = "Bookmarks"
+        ordering = ["-bookmarked_at"]
+        indexes = [
+            models.Index(fields=["user", "post"]),
+        ]
+
+    def __str__(self):
+        return f"{self.user.username} - {self.post.title}"
+
+    def save(self, *args, **kwargs):
+        super(Bookmarks, self).save(*args, **kwargs)

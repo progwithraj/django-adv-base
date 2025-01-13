@@ -49,4 +49,10 @@ dependencies = [
     "constantly>=23.10.4",
     "colorama>=0.4.6",
     "django-ckeditor-5>=0.2.15",
+    "django-auto-rest>=0.2.1",
+    "any-case>=0.1.6",
+    "django-searchable>=0.1.1",
+    "django-richtextfield>=1.6.2",
+    "django-prose-editor>=0.10.2",
+    "pre-commit>=4.0.1",
 ]

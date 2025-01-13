@@ -106,7 +106,4 @@ glog:
 
 .PHONY: chkn
 chkn:
-	git checkout -b 
-
-
-
+	git checkout -b

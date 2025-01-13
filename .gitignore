@@ -2,6 +2,7 @@
 
 # Django
 __pycache__/
+.ruff_cache/
 *.pyc
 *.pyo
 *.py.class
@@ -9,6 +10,10 @@ db.sqlite3
 db.sqlite3-journal
 media
 static
+# # Ignore all migration files
+*/migrations/*
+# Allow __init__.py files in migrations
+!*/migrations/__init__.py
 # PyCharm
 .idea
 
@@ -21,4 +26,3 @@ htmlcov
 
 # node_modules
 node_modules
-

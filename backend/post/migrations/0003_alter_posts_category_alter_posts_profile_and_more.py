@@ -6,27 +6,45 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('post', '0002_alter_posts_updated_at'),
-        ('userProfile', '0003_alter_userprofile_user'),
+        ("post", "0002_alter_posts_updated_at"),
+        ("userProfile", "0003_alter_userprofile_user"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='posts',
-            name='category',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='posts', to='post.category', verbose_name='Category of the post'),
+            model_name="posts",
+            name="category",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="posts",
+                to="post.category",
+                verbose_name="Category of the post",
+            ),
         ),
         migrations.AlterField(
-            model_name='posts',
-            name='profile',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='posts', to='userProfile.userprofile', verbose_name='Profile details of the post creator user'),
+            model_name="posts",
+            name="profile",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="posts",
+                to="userProfile.userprofile",
+                verbose_name="Profile details of the post creator user",
+            ),
         ),
         migrations.AlterField(
-            model_name='posts',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='posts', to=settings.AUTH_USER_MODEL, verbose_name='The Creator of the post'),
+            model_name="posts",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="posts",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="The Creator of the post",
+            ),
         ),
     ]

@@ -6,16 +6,23 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('userProfile', '0002_alter_userprofile_address_alter_userprofile_author_and_more'),
+        (
+            "userProfile",
+            "0002_alter_userprofile_address_alter_userprofile_author_and_more",
+        ),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='userprofile',
-            name='user',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='profile', to=settings.AUTH_USER_MODEL, verbose_name='User of this profile'),
+            model_name="userprofile",
+            name="user",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="profile",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="User of this profile",
+            ),
         ),
     ]

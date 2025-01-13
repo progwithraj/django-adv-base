@@ -18,6 +18,7 @@ from pathlib import Path
 import dj_database_url
 from corsheaders.defaults import default_headers
 from dotenv import load_dotenv
+
 from .utility import convert_string_to_list
 
 load_dotenv()
@@ -75,6 +76,7 @@ THIRD_PARTY_APPS = [
     "anymail",
     "drf_yasg",
     "django_countries",
+    "django_prose_editor",
 ]
 
 LOCAL_APPS = [
@@ -433,3 +435,5 @@ JAZZMIN_UI_TWEAKS = {
         "success": "btn-success",
     },
 }
+
+# rich text editor

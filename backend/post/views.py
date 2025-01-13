@@ -1,5 +1,5 @@
-from rest_framework.response import Response
 from customUser.models import CustomUser
+from rest_framework.response import Response
 
 
 # Create your views here.
