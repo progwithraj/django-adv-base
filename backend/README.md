@@ -6,3 +6,8 @@
 # easilty create superuser
 
     DJANGO_SUPERUSER_USERNAME='<your-username>' DJANGO_SUPERUSER_PASSWORD='<your-password>' DJANGO_SUPERUSER_EMAIL='<your-email>' python manage.py createsuperuser --no-input
+
+## next steps
+
+. add notification logic,
+. possible integrate django-allauth, django-allauth-ui, django-anymail, django-channels
