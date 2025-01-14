@@ -27,7 +27,8 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("Users must have an email address"))
         email = self.normalize_email(email)
         user = self.model(email=email, username=username, **extra_fields)
-        user.set_password(password)
+        if password:
+            user.set_password(password)
         user.save(using=self._db)
         return user
 
@@ -151,5 +152,7 @@ class CustomUser(AbstractUser):
             self.nickname = self.get_nickname
         if check_none_or_empty(self.username):
             self.username = self.get_nickname
-
+        # to set password if it is not empty in hash form
+        if check_none_or_empty(self._password):
+            self.set_password(self._password)
         super(CustomUser, self).save(*args, **kwargs)

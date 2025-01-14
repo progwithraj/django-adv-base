@@ -42,3 +42,15 @@ ERROR 2025-01-14 17:33:40,617 middlewares 2025-01-14 17:33:40 | IP: 127.0.0.1 | 
 INFO 2025-01-14 17:33:52,798 middlewares 2025-01-14 17:33:52 | IP: 127.0.0.1 | Method: GET | Path: /admin/ | Status Code: 200 | Duration: 0.42s
 INFO 2025-01-14 17:34:15,144 middlewares 2025-01-14 17:34:15 | IP: 127.0.0.1 | Method: GET | Path: /admin/ | Status Code: 200 | Duration: 0.43s
 INFO 2025-01-14 17:34:19,190 middlewares 2025-01-14 17:34:19 | IP: 127.0.0.1 | Method: GET | Path: /admin/ | Status Code: 200 | Duration: 0.38s
+INFO 2025-01-14 17:43:45,357 middlewares 2025-01-14 17:43:45 | IP: 127.0.0.1 | Method: GET | Path: /admin/customUser/customuser/ | Status Code: 200 | Duration: 0.48s
+INFO 2025-01-14 17:43:45,522 middlewares 2025-01-14 17:43:45 | IP: 127.0.0.1 | Method: GET | Path: /admin/jsi18n/ | Status Code: 200 | Duration: 0.10s
+INFO 2025-01-14 17:43:52,721 middlewares 2025-01-14 17:43:52 | IP: 127.0.0.1 | Method: GET | Path: /admin/customUser/customuser/add/ | Status Code: 200 | Duration: 2.76s
+INFO 2025-01-14 17:43:52,921 middlewares 2025-01-14 17:43:52 | IP: 127.0.0.1 | Method: GET | Path: /admin/jsi18n/ | Status Code: 200 | Duration: 0.08s
+INFO 2025-01-14 17:44:19,993 middlewares 2025-01-14 17:44:19 | IP: 127.0.0.1 | Method: POST | Path: /admin/customUser/customuser/add/ | Status Code: 302 | Duration: 0.69s
+INFO 2025-01-14 17:44:20,258 middlewares 2025-01-14 17:44:20 | IP: 127.0.0.1 | Method: GET | Path: /admin/customUser/customuser/ | Status Code: 200 | Duration: 0.21s
+INFO 2025-01-14 17:44:20,387 middlewares 2025-01-14 17:44:20 | IP: 127.0.0.1 | Method: GET | Path: /admin/jsi18n/ | Status Code: 200 | Duration: 0.08s
+INFO 2025-01-14 17:56:27,062 middlewares 2025-01-14 17:56:27 | IP: 127.0.0.1 | Method: GET | Path: /admin/customUser/customuser/add/ | Status Code: 200 | Duration: 2.80s
+INFO 2025-01-14 17:56:27,465 middlewares 2025-01-14 17:56:27 | IP: 127.0.0.1 | Method: GET | Path: /admin/jsi18n/ | Status Code: 200 | Duration: 0.25s
+INFO 2025-01-14 17:56:41,858 middlewares 2025-01-14 17:56:41 | IP: 127.0.0.1 | Method: POST | Path: /admin/customUser/customuser/add/ | Status Code: 302 | Duration: 0.67s
+INFO 2025-01-14 17:56:42,130 middlewares 2025-01-14 17:56:42 | IP: 127.0.0.1 | Method: GET | Path: /admin/customUser/customuser/ | Status Code: 200 | Duration: 0.24s
+INFO 2025-01-14 17:56:42,261 middlewares 2025-01-14 17:56:42 | IP: 127.0.0.1 | Method: GET | Path: /admin/jsi18n/ | Status Code: 200 | Duration: 0.09s
