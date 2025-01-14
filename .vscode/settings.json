@@ -80,14 +80,8 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/Thumbs.db": true,
-    "[!b]*/**": true,
-    "b[!a]*/**": true,
-    "ba[!c]*/**": true,
-    "bac[!k]*/**": true,
-    "back[!e]*/**": true,
-    "backe[!n]*/**": true,
-    "backen[!d]*/**": true
-  }
+    "**/Thumbs.db": true
+  },
+  "djlint.showInstallError": false
   // "lmptm.ignoreDisableSync": "Ignore --disable-sync"
 }
