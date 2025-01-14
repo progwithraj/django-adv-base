@@ -3,3 +3,10 @@ INFO 2025-01-13 22:11:15,348 middlewares 2025-01-13 22:11:15 | IP: 127.0.0.1 | M
 ERROR 2025-01-14 16:16:32,909 middlewares 2025-01-14 16:16:32 | IP: 127.0.0.1 | Method: GET | Path: / | Status Code: 404 | Duration: 0.00s
 ERROR 2025-01-14 16:16:33,326 middlewares 2025-01-14 16:16:33 | IP: 127.0.0.1 | Method: GET | Path: /favicon.ico | Status Code: 404 | Duration: 0.00s
 INFO 2025-01-14 16:16:40,364 middlewares 2025-01-14 16:16:40 | IP: 127.0.0.1 | Method: GET | Path: /admin/ | Status Code: 200 | Duration: 0.44s
+INFO 2025-01-14 17:16:19,639 middlewares 2025-01-14 17:16:19 | IP: 127.0.0.1 | Method: GET | Path: /admin/ | Status Code: 200 | Duration: 0.42s
+INFO 2025-01-14 17:16:22,456 middlewares 2025-01-14 17:16:22 | IP: 127.0.0.1 | Method: GET | Path: /admin/notifications/notifications/ | Status Code: 200 | Duration: 0.45s
+INFO 2025-01-14 17:16:22,758 middlewares 2025-01-14 17:16:22 | IP: 127.0.0.1 | Method: GET | Path: /admin/jsi18n/ | Status Code: 200 | Duration: 0.25s
+INFO 2025-01-14 17:16:25,921 middlewares 2025-01-14 17:16:25 | IP: 127.0.0.1 | Method: GET | Path: /admin/notifications/notifications/add/ | Status Code: 200 | Duration: 0.49s
+INFO 2025-01-14 17:16:26,054 middlewares 2025-01-14 17:16:26 | IP: 127.0.0.1 | Method: GET | Path: /admin/jsi18n/ | Status Code: 200 | Duration: 0.09s
+INFO 2025-01-14 17:16:45,162 middlewares 2025-01-14 17:16:45 | IP: 127.0.0.1 | Method: POST | Path: /admin/notifications/notifications/add/ | Status Code: 200 | Duration: 0.66s
+INFO 2025-01-14 17:16:45,299 middlewares 2025-01-14 17:16:45 | IP: 127.0.0.1 | Method: GET | Path: /admin/jsi18n/ | Status Code: 200 | Duration: 0.09s
