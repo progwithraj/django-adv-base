@@ -17,7 +17,7 @@
   "editor.linkedEditing": true,
   "svg.preview.mode": "svg",
   "git.confirmSync": false,
-  "workbench.iconTheme": "symbols",
+  "workbench.iconTheme": "bearded-icons",
   "explorer.confirmDragAndDrop": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "[javascript]": {
