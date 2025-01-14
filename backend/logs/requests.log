@@ -1,2 +1,5 @@
 INFO 2025-01-13 22:11:14,928 middlewares 2025-01-13 22:11:14 | IP: 127.0.0.1 | Method: GET | Path: /admin/customUser/customuser/14/change/ | Status Code: 200 | Duration: 2.79s
 INFO 2025-01-13 22:11:15,348 middlewares 2025-01-13 22:11:15 | IP: 127.0.0.1 | Method: GET | Path: /admin/jsi18n/ | Status Code: 200 | Duration: 0.26s
+ERROR 2025-01-14 16:16:32,909 middlewares 2025-01-14 16:16:32 | IP: 127.0.0.1 | Method: GET | Path: / | Status Code: 404 | Duration: 0.00s
+ERROR 2025-01-14 16:16:33,326 middlewares 2025-01-14 16:16:33 | IP: 127.0.0.1 | Method: GET | Path: /favicon.ico | Status Code: 404 | Duration: 0.00s
+INFO 2025-01-14 16:16:40,364 middlewares 2025-01-14 16:16:40 | IP: 127.0.0.1 | Method: GET | Path: /admin/ | Status Code: 200 | Duration: 0.44s

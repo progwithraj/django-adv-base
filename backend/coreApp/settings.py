@@ -84,6 +84,7 @@ LOCAL_APPS = [
     "customUser.apps.CustomuserConfig",
     "userProfile.apps.UserprofileConfig",
     "post.apps.PostConfig",
+    "notifications.apps.NotificationsConfig",
 ]
 
 

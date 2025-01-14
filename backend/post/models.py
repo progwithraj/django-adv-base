@@ -113,6 +113,7 @@ class Posts(models.Model):
     )
 
     class Meta:
+        verbose_name = "Post"
         verbose_name_plural = "Posts"  # plural form of table name
         db_table = "Posts"
         ordering = [
@@ -251,6 +252,7 @@ class Bookmarks(models.Model):
     )
 
     class Meta:
+        verbose_name = "Bookmark"
         verbose_name_plural = "Bookmarks"
         db_table = "Bookmarks"
         ordering = ["-bookmarked_at"]

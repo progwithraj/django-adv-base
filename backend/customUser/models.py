@@ -78,6 +78,7 @@ class CustomUser(AbstractUser):
     class Meta:
         verbose_name = "user"
         verbose_name_plural = "users"
+        db_table = "Users"
 
     @property
     def get_full_name(self):

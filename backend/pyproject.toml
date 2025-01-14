@@ -55,4 +55,6 @@ dependencies = [
     "django-richtextfield>=1.6.2",
     "django-prose-editor>=0.10.2",
     "pre-commit>=4.0.1",
+    "six>=1.17.0",
+    "astunparse>=1.6.3",
 ]

@@ -17,7 +17,7 @@
   "editor.linkedEditing": true,
   "svg.preview.mode": "svg",
   "git.confirmSync": false,
-  "workbench.iconTheme": "bearded-icons",
+  "workbench.iconTheme": "symbols",
   "explorer.confirmDragAndDrop": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "[javascript]": {
@@ -38,7 +38,7 @@
   "ruff.fixAll": true, // Enable automatic code fixes
   "ruff.lint.enable": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true // Fix all fixable errors on save
+    "source.fixAll": "explicit"
   },
   "pieces.OS.launchOnStartup": "Yes",
   "pieces.cloudCapabilities": "Blended",
@@ -71,5 +71,16 @@
   "editor.letterSpacing": 0.3,
   // terminal
   "terminal.integrated.fontFamily": "'Fira Code', 'Courier New', monospace",
-  "terminal.integrated.fontSize": 14 // Adjust the font size as needed
+  "terminal.integrated.fontSize": 14, // Adjust the font size as needed
+  // let me play extension
+  "lmptm.browserPath": "/Applications/Brave Browser.app",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  }
+  // "lmptm.ignoreDisableSync": "Ignore --disable-sync"
 }

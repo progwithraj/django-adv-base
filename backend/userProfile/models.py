@@ -64,5 +64,11 @@ class UserProfile(models.Model):
         default=True, verbose_name=_("Active status of the user")
     )
 
+    class Meta:
+        verbose_name = _("User Profile")
+        verbose_name_plural = _("User Profiles")
+        db_table = "UserProfiles"
+        ordering = ["-jone_date"]
+
     def __str__(self):
         return self.user.username
