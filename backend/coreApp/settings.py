@@ -85,6 +85,7 @@ LOCAL_APPS = [
     "userProfile.apps.UserprofileConfig",
     "post.apps.PostConfig",
     "notifications.apps.NotificationsConfig",
+    "jwtTokens.apps.JwttokensConfig",
 ]
 
 
@@ -388,6 +389,8 @@ CORS_ALLOW_CREDENTIALS = True
 # jwt configuration
 JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY")
 SIMPLE_JWT = {
+    # It will work instead of the default serializer(TokenObtainPairSerializer).
+    "TOKEN_OBTAIN_SERIALIZER": "jwtTokens.serializers.MyCustomTokenObtainPairSerializer",
     "SIGNING_KEY": JWT_SECRET_KEY,
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
